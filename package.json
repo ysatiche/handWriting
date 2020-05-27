@@ -1,0 +1,29 @@
+{
+  "name": "canvas-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc ./index.ts && webpack --config ./config/webpack.config.js index.js --color --progress"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@types/fs-extra": "^8.1.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.2",
+    "fs-extra": "^9.0.0",
+    "style-loader": "^1.1.4",
+    "ts-loader": "^7.0.0",
+    "typescript": "^3.8.3",
+    "uuid": "^7.0.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.0",
+    "typescript-plugin-css-modules": "^2.2.0"
+  }
+}

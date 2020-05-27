@@ -1,0 +1,39 @@
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var element_base_1 = require("./element-base");
+var MagicPen = /** @class */ (function (_super) {
+    __extends(MagicPen, _super);
+    function MagicPen() {
+        var _this = _super.call(this) || this;
+        _this.type = 'magic-pen';
+        _this.ctxConfig = {
+            renderCtx: 'ctxTemp',
+            saveCtx: false
+        };
+        return _this;
+    }
+    MagicPen.prototype.drawEnd = function (event) {
+        _super.prototype.drawEnd.call(this, event);
+        return {
+            type: this.type,
+            data: {
+                resType: 'star'
+            }
+        };
+    };
+    return MagicPen;
+}(element_base_1["default"]));
+exports["default"] = MagicPen;

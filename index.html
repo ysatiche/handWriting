@@ -1,0 +1,27 @@
+<!doctype html5>
+<html>
+    <head>
+        <style>
+            canvas {
+                position: fixed;
+                left: 0;
+                top: 0;
+            }
+            #canvasId {
+                z-index: 5;
+            }
+            #canvasTmpId {
+                z-index: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvasId" width="1920" height="1080"></canvas>
+        <canvas id="canvasTmpId" width="1920" height="1080"></canvas>
+        <!-- <script>
+            let canv = document.getElementById("canvasId")
+            let ctx = canv.getContext('2d')
+        </script> -->
+        <script src="./dist/main.js"></script>
+    </body>
+</html>
