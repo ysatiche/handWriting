@@ -69,6 +69,7 @@ class HandWritting {
     this.canv.addEventListener('pointermove', this.drawing.bind(this))
     this.canv.addEventListener('pointerup', this.drawEnd.bind(this))
     this.canv.addEventListener('pointerleave', this.drawEnd.bind(this))
+    document.addEventListener('paste', this.awesomeCopy.bind(this))
 
     /* 临时画布 */
     this.canvTemp = <HTMLCanvasElement> document.getElementById(canvastemp)
@@ -195,6 +196,35 @@ class HandWritting {
     }
     this.addElement(ele, event.pointerId)
     ele.drawBegin(event)
+  }
+
+  /**
+   * 暂时先做两个功能 复制文字 复制图片链接
+   * @param event 
+   */
+  awesomeCopy (event: any): any {
+    let cbd = event.clipboardData
+    let ua = window.navigator.userAgent
+
+    const clipboardText = cbd.getData('Text')
+
+    if (!(event.clipboardData && event.clipboardData.items)) return
+
+//     if(cbd.items && cbd.items.length === 2 && cbd.items[0].kind === "string" && cbd.items[1].kind === "file" &&
+//     cbd.types && cbd.types.length === 2 && cbd.types[0] === "text/plain" && cbd.types[1] === "Files" &&
+//     ua.match(/Macintosh/i) && Number(ua.match(/Chrome\/(\d{2})/i)[1]) < 49){
+//     return;
+// }
+      console.warn(`[awesomeCopy] [cbd]${JSON.stringify(cbd)} [clipboardText] ${clipboardText}`)
+    // TODO 复制图片 cbd.items 一直为空
+    for (let i = 0; i < cbd.items.length; i++) {
+      let item = cbd.items[i]
+      if (item.type.indexOf("image") == -1) continue;
+      // Retrieve image on clipboard as blob
+      var blob = item.getAsFile();
+      console.warn(`[awesomeCopy] [blob] ${JSON.stringify(blob)}
+      `)
+    }
   }
 
   revoke (): any { // 撤销

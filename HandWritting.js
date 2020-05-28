@@ -46,6 +46,7 @@ var HandWritting = /** @class */ (function () {
         this.canv.addEventListener('pointermove', this.drawing.bind(this));
         this.canv.addEventListener('pointerup', this.drawEnd.bind(this));
         this.canv.addEventListener('pointerleave', this.drawEnd.bind(this));
+        document.addEventListener('paste', this.awesomeCopy.bind(this));
         /* 临时画布 */
         this.canvTemp = document.getElementById(canvastemp);
         this.ctxTemp = this.canvTemp.getContext('2d');
@@ -168,6 +169,27 @@ var HandWritting = /** @class */ (function () {
         }
         this.addElement(ele, event.pointerId);
         ele.drawBegin(event);
+    };
+    HandWritting.prototype.awesomeCopy = function (event) {
+        var cbd = event.clipboardData;
+        var ua = window.navigator.userAgent;
+        var clipboardText = cbd.getData('Text');
+        if (!(event.clipboardData && event.clipboardData.items))
+            return;
+        //     if(cbd.items && cbd.items.length === 2 && cbd.items[0].kind === "string" && cbd.items[1].kind === "file" &&
+        //     cbd.types && cbd.types.length === 2 && cbd.types[0] === "text/plain" && cbd.types[1] === "Files" &&
+        //     ua.match(/Macintosh/i) && Number(ua.match(/Chrome\/(\d{2})/i)[1]) < 49){
+        //     return;
+        // }
+        console.warn("[awesomeCopy] [cbd]" + JSON.stringify(cbd) + " [clipboardText] " + clipboardText);
+        for (var i = 0; i < cbd.items.length; i++) {
+            var item = cbd.items[i];
+            if (item.kind == 'file') {
+                var blob = item.getAsFile();
+                if (blob.size === 0)
+                    return;
+            }
+        }
     };
     HandWritting.prototype.revoke = function () {
         var res = this.operatorRecorder.revoke();

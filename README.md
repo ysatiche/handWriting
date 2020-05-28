@@ -73,6 +73,17 @@ handWritting.setStatus(name) // name 如果是第一种加载方法的话 name�
 
 - 手掌橡皮未完成
 
+- 剪切板粘贴到canvas [TODO]
+
+- 滤镜
+
+- 动画
+
+- 特效
+
+# 功能开发点
+
+## 剪切板粘贴到canvas
 
 # 其他
 
